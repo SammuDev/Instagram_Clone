@@ -18,10 +18,12 @@
 
     <EditText
         android:id="@+id/login_editText_email"
-        style="@style/Theme.Instagram_Clone.FormEditText" />
+        style="@style/Theme.Instagram_Clone.FormEditText"
+        android:hint="@string/email" />
 
     <EditText
         android:id="@+id/login_editText_password"
-        style="@style/Theme.Instagram_Clone.FormEditText" />
+        style="@style/Theme.Instagram_Clone.FormEditText"
+        android:hint="@string/senha" />
 
 </LinearLayout>

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Instagram_Clone.FormEditText">
+
+    <style name="Theme.Instagram_Clone.FormContainer">
+        <item name="android:layout_marginStart">35dp</item>
+        <item name="android:layout_marginEnd">35dp</item>
+    </style>
+
+    <style name="Theme.Instagram_Clone.FormEditText" parent="Theme.Instagram_Clone.FormContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">25dp</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:background">@drawable/edit_text_background</item>
     </style>
+
 </resources>

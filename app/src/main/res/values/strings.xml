@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Instagram_Clone</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Password</string>
 </resources>
