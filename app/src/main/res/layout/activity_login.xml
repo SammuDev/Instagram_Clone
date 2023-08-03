@@ -19,11 +19,20 @@
     <EditText
         android:id="@+id/login_editText_email"
         style="@style/Theme.Instagram_Clone.FormEditText"
-        android:hint="@string/email" />
+        android:autofillHints="@null"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/login_editText_password"
         style="@style/Theme.Instagram_Clone.FormEditText"
-        android:hint="@string/senha" />
+        android:autofillHints="@null"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/login_button_enter"
+        style="@style/Theme.Instagram_Clone.Button"
+        android:text="@string/enter" />
 
 </LinearLayout>
