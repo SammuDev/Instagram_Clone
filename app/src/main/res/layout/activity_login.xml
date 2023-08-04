@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".login.view.LoginActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/login_imageView_logo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="45dp"
-        android:contentDescription="@null"
-        android:src="@drawable/instagram_logo_black" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".login.view.LoginActivity">
 
-    <EditText
-        android:id="@+id/login_editText_email"
-        style="@style/Theme.Instagram_Clone.FormEditText"
-        android:autofillHints="@null"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/login_editText_password"
-        style="@style/Theme.Instagram_Clone.FormEditText"
-        android:autofillHints="@null"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/login_button_enter"
-        style="@style/Theme.Instagram_Clone.Button"
-        android:text="@string/enter" />
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <View
+        <ImageView
+            android:id="@+id/login_imageView_logo"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:background="@color/gray_border" />
+            android:layout_height="60dp"
+            android:layout_marginBottom="45dp"
+            android:contentDescription="@null"
+            android:src="@drawable/instagram_logo_black" />
 
-        <TextView
-            style="@style/Theme.Instagram_Clone.TextviewBase"
-            android:layout_gravity="center"
-            android:text="@string/or" />
-    </FrameLayout>
+        <EditText
+            android:id="@+id/login_editText_email"
+            style="@style/Theme.Instagram_Clone.FormEditText"
+            android:autofillHints="@null"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/login_editText_password"
+            style="@style/Theme.Instagram_Clone.FormEditText"
+            android:autofillHints="@null"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/login_button_enter"
+            style="@style/Theme.Instagram_Clone.Button"
+            android:text="@string/enter" />
+
+        <FrameLayout
+            style="@style/Theme.Instagram_Clone.FormContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/gray_border" />
+
+            <TextView
+                style="@style/Theme.Instagram_Clone.TextviewBase"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:text="@string/or" />
+        </FrameLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
