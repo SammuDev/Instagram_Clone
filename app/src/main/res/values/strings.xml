@@ -4,4 +4,5 @@
     <string name="password">Senha</string>
     <string name="enter">Entrar</string>
     <string name="or">OU</string>
+    <string name="does_not_have_account">Não possui conta? <b><font color="#0000000">Cadastre-se</font></b></string>
 </resources>
