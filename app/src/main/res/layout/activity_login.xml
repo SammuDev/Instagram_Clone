@@ -48,7 +48,7 @@
                 style="@style/Theme.Instagram_Clone.FormEditTextInput"
                 app:hintEnabled="false">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_editText_password"
                     style="@style/Theme.Instagram_Clone.FormEditText"
                     android:autofillHints="@null"
@@ -59,6 +59,7 @@
             <Button
                 android:id="@+id/login_button_enter"
                 style="@style/Theme.Instagram_Clone.Button"
+                android:enabled="false"
                 android:text="@string/enter" />
 
             <FrameLayout
