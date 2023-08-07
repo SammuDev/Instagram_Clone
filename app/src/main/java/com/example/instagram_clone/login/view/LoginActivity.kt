@@ -40,6 +40,5 @@ class LoginActivity : AppCompatActivity() {
         override fun afterTextChanged(p0: Editable?) {
             TODO("Not yet implemented")
         }
-
     }
 }
