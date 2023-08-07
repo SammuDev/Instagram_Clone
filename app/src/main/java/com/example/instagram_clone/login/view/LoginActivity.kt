@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         editTextEmail.addTextChangedListener(watcher)
         editTextPassword.addTextChangedListener(watcher)
 
-        findViewById<Button>(R.id.login_button_enter).setOnClickListener {
+        findViewById<LoadingButton>(R.id.login_button_enter).setOnClickListener {
             findViewById<TextInputEditText>(R.id.login_edit_email_input)
                 .error = "E-mail inválido!"
 
@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            findViewById<Button>(R.id.login_button_enter).isEnabled = p0.toString().isNotEmpty()
+            findViewById<LoadingButton>(R.id.login_button_enter).isEnabled = p0.toString().isNotEmpty()
         }
 
         override fun afterTextChanged(p0: Editable?) {

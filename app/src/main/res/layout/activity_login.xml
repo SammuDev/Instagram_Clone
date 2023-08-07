@@ -56,10 +56,11 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+<!--        Componente (Botão) criado no 'LoadingButton.kt'-->
+            <com.example.instagram_clone.login.view.LoadingButton
                 android:id="@+id/login_button_enter"
-                style="@style/Theme.Instagram_Clone.Button"
-                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/enter" />
 
             <FrameLayout
