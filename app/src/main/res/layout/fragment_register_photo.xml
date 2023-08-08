@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="70dp">
+
+            <ImageView
+                android:id="@+id/register_imageView_logo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="45dp"
+                android:contentDescription="@null"
+                android:src="@drawable/photo_icon" />
+
+            <TextView
+                style="@style/Theme.Instagram_Clone.TextviewBase.Form"
+                android:text="@string/photo_register_title"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/Theme.Instagram_Clone.TextviewBase.Form"
+                android:text="@string/photo_register_subtitle"
+                android:textColor="@color/black" />
+
+            <!--        Componente (Botão) criado no 'LoadingButton.kt'-->
+            <com.example.instagram_clone.login.view.LoadingButton
+                android:id="@+id/register_button_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hello="@string/next" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
