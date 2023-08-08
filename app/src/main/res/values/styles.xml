@@ -15,6 +15,7 @@
     </style>
 
     -->
+
     <style name="Theme.Instagram_Clone.FormEditTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -37,12 +38,18 @@
     <style name="Theme.Instagram_Clone.TextviewBase" parent="Theme.Instagram_Clone.FormContainer">
         <item name="android:textColor">@color/gray_text</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:padding">8dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
     </style>
 
     <style name="Theme.Instagram_Clone.TextviewBase.Form">
         <item name="android:textAlignment">center</item>
         <item name="android:layout_marginBottom">24dp</item>
+    </style>
+
+    <style name="Theme.Instagram_Clone.Link" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue_enabled</item>
     </style>
 </resources>
