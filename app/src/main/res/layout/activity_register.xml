@@ -9,9 +9,9 @@
 
     <fragment
         android:id="@+id/register_fragment"
-        android:name="com.example.instagram_clone.register.view.RegisterEmailFragment"
+        android:name="com.example.instagram_clone.register.view.RegisterWelcomeFragment"
         android:layout_width="match_parent"
-        tools:layout="@layout/fragment_register_email"
+        tools:layout="@layout/fragment_register_welcome"
         android:layout_height="match_parent" />
 
 </LinearLayout>
