@@ -1,6 +1,7 @@
 package com.example.instagram_clone.register.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,12 @@ class RegisterPhotoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val customDialog = CustomDialog(requireContext())
-        customDialog.addButton({
-        }, R.string.photo, R.string.gallery)
+        customDialog.addButton(R.string.photo, R.string.gallery) {
+            when(it.id) {
+                R.string.photo -> Log.i("Teste", "FOTO")
+                R.string.gallery -> Log.i("Teste", "GALERIA")
+            }
+        }
         customDialog.show()
     }
 }

@@ -19,12 +19,12 @@ class CustomDialog(context: Context) : Dialog(context) {
         dialogLinearLayout = findViewById(R.id.dialog_container)
     }
 
-    fun addButton(listener: View.OnClickListener, vararg texts: Int) {
+    fun addButton(vararg texts: Int, listener: View.OnClickListener) {
         textsButton = Array(texts.size) {
             TextView(context)
         }
-
         texts.forEachIndexed { idx, text ->
+            textsButton[idx].id = text
             textsButton[idx].setText(text)
             textsButton[idx].setOnClickListener {
                 listener.onClick(it)
@@ -35,9 +35,13 @@ class CustomDialog(context: Context) : Dialog(context) {
 
     override fun show() {
         super.show()
-
         for (textView in textsButton) {
-            dialogLinearLayout.addView(textView)
+            val layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            layoutParams.setMargins(30, 50, 30, 50)
+            dialogLinearLayout.addView(textView, layoutParams)
         }
     }
 }
