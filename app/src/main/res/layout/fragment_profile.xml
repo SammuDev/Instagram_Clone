@@ -110,4 +110,24 @@
         app:layout_constraintStart_toStartOf="@+id/fragmentProfile_image_icon"
         app:layout_constraintTop_toBottomOf="@+id/profile_text_username"
         tools:text="Text da BIO" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/profile_nav_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/top_bottom_border"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_text_bio"
+        app:menu="@menu/menu_profile_bottom_nav" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_profile_grid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_nav_tabs" />
 </androidx.constraintlayout.widget.ConstraintLayout>
