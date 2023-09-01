@@ -79,4 +79,35 @@
         app:layout_constraintStart_toEndOf="@+id/profile_text_followers_count"
         app:layout_constraintTop_toBottomOf="@+id/profile_text_following_count" />
 
+    <Button
+        android:id="@+id/profile_button_edit_profile"
+        style="@style/Theme.Instagram_Clone.Button.White"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/edit_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragmentProfile_image_icon"
+        app:layout_constraintTop_toBottomOf="@+id/profile_text_posts" />
+
+    <TextView
+        android:id="@+id/profile_text_username"
+        style="@style/Theme.Instagram_Clone.TextViewProfile"
+        android:layout_marginTop="32dp"
+        android:text="@string/username"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragmentProfile_image_icon"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentProfile_image_icon" />
+
+    <TextView
+        android:id="@+id/profile_text_bio"
+        style="@style/Theme.Instagram_Clone.TextViewProfile"
+        android:ellipsize="marquee"
+        android:maxLines="3"
+        android:text="@string/username"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="@+id/profile_button_edit_profile"
+        app:layout_constraintStart_toStartOf="@+id/fragmentProfile_image_icon"
+        app:layout_constraintTop_toBottomOf="@+id/profile_text_username"
+        tools:text="Text da BIO" />
 </androidx.constraintlayout.widget.ConstraintLayout>
