@@ -40,8 +40,7 @@ class FragmentProfile : Fragment() {
         }
 
         override fun onBindViewHolder(holder: PostAdapter.PostViewHolder, position: Int) {
-//            holder.bind(R.drawable.ic_insta_add)
-            holder.bind(R.drawable.Kotlin_Logo_RGB)
+            holder.bind(R.drawable.ic_insta_add)
         }
 
         override fun getItemCount(): Int {
