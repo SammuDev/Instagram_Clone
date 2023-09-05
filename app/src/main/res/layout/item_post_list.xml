@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/home_image_user"
@@ -44,33 +44,47 @@
         android:layout_marginTop="16dp"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:src="@tools:sample/backgrounds/scenic"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_image_user" />
+        app:layout_constraintTop_toBottomOf="@+id/home_image_user"
+        tools:src="@tools:sample/backgrounds/scenic" />
 
     <LinearLayout
         android:id="@+id/home_container_user_comment"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        app:civ_circle_background_color="@color/white"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_image_post">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            style="Theme.Instagram_Clone.Icon"
+        <ImageView
+            style="@style/Theme.Instagram_Clone.Icon"
+            android:contentDescription="@null"
             android:src="@drawable/ic_insta_heart" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            style="Theme.Instagram_Clone.Icon"
+        <ImageView
+            style="@style/Theme.Instagram_Clone.Icon"
+            android:contentDescription="@null"
             android:src="@drawable/ic_insta_comment" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            style="Theme.Instagram_Clone.Icon"
+        <ImageView
+            style="@style/Theme.Instagram_Clone.Icon"
+            android:contentDescription="@null"
             android:src="@drawable/ic_insta_send" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/home_text_caption"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:maxLines="3"
+        android:paddingHorizontal="8dp"
+        android:text="@string/agree_terms_policy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_container_user_comment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

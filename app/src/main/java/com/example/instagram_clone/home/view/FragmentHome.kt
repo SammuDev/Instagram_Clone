@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram_clone.R
 
-class FragmentProfile : Fragment() {
+class FragmentHome : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,7 +60,7 @@ class FragmentProfile : Fragment() {
 
         private inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             fun bind(image: Int) {
-                itemView.findViewById<ImageView>(R.id.item_profile_image_grid)
+                itemView.findViewById<ImageView>(R.id.home_image_post)
                     .setImageResource(image)
             }
         }
