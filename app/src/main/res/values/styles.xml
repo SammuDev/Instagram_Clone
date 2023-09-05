@@ -53,6 +53,12 @@
         <item name="android:textColor">@color/blue_enabled</item>
     </style>
 
+    <style name="Theme.Instagram_Clone.Icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
     <style name="Theme.Instagram_Clone.TextViewProfile">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
