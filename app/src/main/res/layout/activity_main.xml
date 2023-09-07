@@ -34,11 +34,11 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_fragment"
-            android:name="com.example.instagram_clone.home.view.FragmentHome"
+            android:name="com.example.instagram_clone.search.view.FragmentSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:layout="@layout/fragment_home" />
+            tools:layout="@layout/fragment_search" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
