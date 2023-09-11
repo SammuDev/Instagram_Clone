@@ -6,9 +6,7 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-import com.example.instagram_clone.R
 import com.example.instagram_clone.databinding.ActivityLoginBinding
-import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -18,23 +16,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val editTextEmail = findViewById<TextInputEditText>(R.id.login_editText_email)
-        val editTextPassword = findViewById<TextInputEditText>(R.id.login_editText_password)
+        binding.loginEditTextEmail.addTextChangedListener(watcher)
+        binding.loginEditTextPassword.addTextChangedListener(watcher)
 
-        editTextEmail.addTextChangedListener(watcher)
-        editTextPassword.addTextChangedListener(watcher)
-
-        val buttonEnter = findViewById<LoadingButton>(R.id.login_button_enter)
-        buttonEnter.setOnClickListener {
-            buttonEnter.showProgress(true)
-            findViewById<TextInputEditText>(R.id.login_edit_email_input)
-                .error = "E-mail inválido!"
-
-            findViewById<TextInputEditText>(R.id.login_edit_password_input)
-                .error = "Senha incorreta!"
+        binding.loginButtonEnter.setOnClickListener {
+            binding.loginButtonEnter.showProgress(true)
+            binding.loginEditEmailInput.error = "E-mail inválido!"
+            binding.loginEditPasswordInput.error = "Senha inválida!"
 
             Handler(Looper.getMainLooper()).postDelayed({
-                buttonEnter.showProgress(false)
+                binding.loginButtonEnter.showProgress(false)
             }, 2000)
         }
     }
@@ -45,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            findViewById<LoadingButton>(R.id.login_button_enter).isEnabled =
+            binding.loginButtonEnter.isEnabled =
                 p0.toString().isNotEmpty()
         }
 
