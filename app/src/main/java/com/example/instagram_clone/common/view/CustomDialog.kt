@@ -7,16 +7,22 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.instagram_clone.R
+import com.example.instagram_clone.databinding.DialogCustomBinding
 
 class CustomDialog(context: Context) : Dialog(context) {
-    private lateinit var dialogLinearLayout: LinearLayout
     private lateinit var textsButton: Array<TextView>
+    private lateinit var binding: DialogCustomBinding
+
+    private var titleId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_custom)
+        binding = DialogCustomBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
 
-        dialogLinearLayout = findViewById(R.id.dialog_container)
+    override fun setTitle(titleId: Int) {
+        this.titleId = titleId
     }
 
     fun addButton(vararg texts: Int, listener: View.OnClickListener) {
@@ -35,13 +41,16 @@ class CustomDialog(context: Context) : Dialog(context) {
 
     override fun show() {
         super.show()
+        titleId?.let {
+            binding.dialogTitle.setText(it)
+        }
         for (textView in textsButton) {
             val layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             layoutParams.setMargins(30, 50, 30, 50)
-            dialogLinearLayout.addView(textView, layoutParams)
+            binding.dialogContainer.addView(textView, layoutParams)
         }
     }
 }
