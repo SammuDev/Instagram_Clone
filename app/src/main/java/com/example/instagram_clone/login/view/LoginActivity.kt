@@ -7,12 +7,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram_clone.R
+import com.example.instagram_clone.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val editTextEmail = findViewById<TextInputEditText>(R.id.login_editText_email)
         val editTextPassword = findViewById<TextInputEditText>(R.id.login_editText_password)
