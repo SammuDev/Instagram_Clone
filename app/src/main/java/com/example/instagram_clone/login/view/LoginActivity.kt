@@ -6,6 +6,7 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -16,9 +17,15 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        with (binding) {
-            loginEditTextEmail.addTextChangedListener(watcher)
-            loginEditTextPassword.addTextChangedListener(watcher)
+        with(binding) {
+            loginEditTextEmail.addTextChangedListener(TextWatcherr {
+                loginButtonEnter.isEnabled =
+                    it.isNotEmpty()
+            })
+            loginEditTextPassword.addTextChangedListener(TextWatcherr {
+                loginButtonEnter.isEnabled =
+                    it.isNotEmpty()
+            })
 
             loginButtonEnter.setOnClickListener {
                 loginButtonEnter.showProgress(true)
@@ -38,8 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            binding.loginButtonEnter.isEnabled =
-                p0.toString().isNotEmpty()
+            TODO("Not yet implemented")
         }
 
         override fun afterTextChanged(p0: Editable?) {
