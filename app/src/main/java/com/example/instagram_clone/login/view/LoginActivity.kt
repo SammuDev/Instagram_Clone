@@ -8,8 +8,9 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.ActivityLoginBinding
+import com.example.instagram_clone.login.Login
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), Login.View {
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,19 +23,35 @@ class LoginActivity : AppCompatActivity() {
             loginEditTextPassword.addTextChangedListener(watcher)
 
             loginButtonEnter.setOnClickListener {
-                loginButtonEnter.showProgress(true)
-                loginEditEmailInput.error = "E-mail inválido!"
-                loginEditPasswordInput.error = "Senha inválida!"
 
-                Handler(Looper.getMainLooper()).postDelayed({
-                    loginButtonEnter.showProgress(false)
-                }, 2000)
+//                Handler(Looper.getMainLooper()).postDelayed({
+//                    loginButtonEnter.showProgress(false)
+//                }, 2000)
             }
         }
     }
 
     private val watcher = TextWatcherr {
-        binding.loginButtonEnter.isEnabled =
-            it.isNotEmpty()
+        binding.loginButtonEnter.isEnabled = it.isNotEmpty()
+    }
+
+    override fun showProgress(enabled: Boolean) {
+        binding.loginButtonEnter.showProgress(enabled)
+    }
+
+    override fun displayEmailFailure(emailError: Int?) {
+        binding.loginEditEmailInput.error = emailError?.let { getString(it) }
+    }
+
+    override fun displayPasswordFailure(passwordError: Int?) {
+        binding.loginEditPasswordInput.error = passwordError?.let { getString(it) }
+    }
+
+    override fun onUserAuthenticator() {
+        // IR À TELA PRINCIPAL
+    }
+
+    override fun onUserUnauthorized() {
+        // MOSTRAR UM ALERTA
     }
 }
