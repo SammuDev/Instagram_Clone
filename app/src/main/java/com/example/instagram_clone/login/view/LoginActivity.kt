@@ -18,14 +18,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            loginEditTextEmail.addTextChangedListener(TextWatcherr {
-                loginButtonEnter.isEnabled =
-                    it.isNotEmpty()
-            })
-            loginEditTextPassword.addTextChangedListener(TextWatcherr {
-                loginButtonEnter.isEnabled =
-                    it.isNotEmpty()
-            })
+            loginEditTextEmail.addTextChangedListener(watcher)
+            loginEditTextPassword.addTextChangedListener(watcher)
 
             loginButtonEnter.setOnClickListener {
                 loginButtonEnter.showProgress(true)
@@ -39,17 +33,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private val watcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            TODO("Not yet implemented")
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            TODO("Not yet implemented")
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            TODO("Not yet implemented")
-        }
+    private val watcher = TextWatcherr {
+        binding.loginButtonEnter.isEnabled =
+            it.isNotEmpty()
     }
 }
