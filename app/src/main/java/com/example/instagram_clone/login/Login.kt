@@ -1,6 +1,11 @@
 package com.example.instagram_clone.login
 
 interface Login {
+    // Camada Presenter
+    interface Presenter {
+        fun login(email: String, password: String)
+    }
+
     // Camada view
     interface View {
         fun showProgress(enabled: Boolean)
