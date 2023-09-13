@@ -9,7 +9,8 @@ import com.example.instagram_clone.login.presentation.LoginPresenter
 
 class LoginActivity : AppCompatActivity(), Login.View {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var presenter: Login.Presenter
+
+    override lateinit var presenter: Login.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
