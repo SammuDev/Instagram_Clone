@@ -36,7 +36,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_editText_email"
+                    android:id="@+id/login_edit_email"
                     style="@style/Theme.Instagram_Clone.FormEditText"
                     android:autofillHints="@null"
                     android:hint="@string/email"
@@ -49,7 +49,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_editText_password"
+                    android:id="@+id/login_edit_password"
                     style="@style/Theme.Instagram_Clone.FormEditText"
                     android:autofillHints="@null"
                     android:hint="@string/password"

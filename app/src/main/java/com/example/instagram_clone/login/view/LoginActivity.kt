@@ -1,11 +1,14 @@
 package com.example.instagram_clone.login.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.ActivityLoginBinding
 import com.example.instagram_clone.login.Login
 import com.example.instagram_clone.login.presentation.LoginPresenter
+import com.example.instagram_clone.main.view.MainActivity
 
 class LoginActivity : AppCompatActivity(), Login.View {
     private lateinit var binding: ActivityLoginBinding
@@ -19,14 +22,18 @@ class LoginActivity : AppCompatActivity(), Login.View {
         presenter = LoginPresenter(this)
 
         with(binding) {
-            loginEditTextEmail.addTextChangedListener(watcher)
-            loginEditTextPassword.addTextChangedListener(watcher)
+            loginEditEmail.addTextChangedListener(watcher)
+            loginEditEmail.addTextChangedListener(TextWatcherr {
+                displayEmailFailure(null)
+            })
+
+            loginEditPassword.addTextChangedListener(watcher)
+            loginEditPassword.addTextChangedListener(TextWatcherr {
+                displayPasswordFailure(null)
+            })
 
             loginButtonEnter.setOnClickListener {
-                presenter.login(
-                    loginEditTextEmail.text.toString(),
-                    loginEditTextPassword.text.toString()
-                )
+                presenter.login(loginEditEmail.text.toString(), loginEditPassword.text.toString())
 
 //                Handler(Looper.getMainLooper()).postDelayed({
 //                    loginButtonEnter.showProgress(false)
@@ -35,8 +42,14 @@ class LoginActivity : AppCompatActivity(), Login.View {
         }
     }
 
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
     private val watcher = TextWatcherr {
-        binding.loginButtonEnter.isEnabled = it.isNotEmpty()
+        binding.loginButtonEnter.isEnabled = binding.loginEditEmail.text.toString().isNotEmpty()
+                && binding.loginEditPassword.text.toString().isNotEmpty()
     }
 
     override fun showProgress(enabled: Boolean) {
@@ -52,10 +65,11 @@ class LoginActivity : AppCompatActivity(), Login.View {
     }
 
     override fun onUserAuthenticator() {
-        // IR À TELA PRINCIPAL
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
-    override fun onUserUnauthorized() {
-        // MOSTRAR UM ALERTA
+    override fun onUserUnauthorized(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
