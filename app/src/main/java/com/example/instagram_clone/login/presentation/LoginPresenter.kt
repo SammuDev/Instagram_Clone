@@ -29,15 +29,15 @@ class LoginPresenter(private var view: Login.View?, private val repository: Logi
 
             repository.login(email, password, object : LoginCallback {
                 override fun onSucces() {
-                    TODO("Not yet implemented")
+                    view?.onUserAuthenticator()
                 }
 
                 override fun onFailure(message: String) {
-                    TODO("Not yet implemented")
+                    view?.onUserUnauthorized(message)
                 }
 
                 override fun onComplete() {
-                    TODO("Not yet implemented")
+                    view?.showProgress(false)
                 }
             })
         }

@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.ActivityLoginBinding
 import com.example.instagram_clone.login.Login
+import com.example.instagram_clone.login.data.FakeDataSource
+import com.example.instagram_clone.login.data.LoginRepository
 import com.example.instagram_clone.login.presentation.LoginPresenter
 import com.example.instagram_clone.main.view.MainActivity
 
@@ -19,7 +21,9 @@ class LoginActivity : AppCompatActivity(), Login.View {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = LoginPresenter(this)
+
+        var repository = LoginRepository(FakeDataSource())
+        presenter = LoginPresenter(this, repository)
 
         with(binding) {
             loginEditEmail.addTextChangedListener(watcher)
@@ -34,10 +38,6 @@ class LoginActivity : AppCompatActivity(), Login.View {
 
             loginButtonEnter.setOnClickListener {
                 presenter.login(loginEditEmail.text.toString(), loginEditPassword.text.toString())
-
-//                Handler(Looper.getMainLooper()).postDelayed({
-//                    loginButtonEnter.showProgress(false)
-//                }, 2000)
             }
         }
     }
