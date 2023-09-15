@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity(), Login.View {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var repository = LoginRepository(FakeDataSource())
+        val repository = LoginRepository(FakeDataSource())
         presenter = LoginPresenter(this, repository)
 
         with(binding) {

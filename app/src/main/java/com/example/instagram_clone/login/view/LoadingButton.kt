@@ -10,11 +10,12 @@ import android.widget.ProgressBar
 import com.example.instagram_clone.R
 
 class LoadingButton : FrameLayout {
-    constructor(context: Context) : super(context)
 
     private lateinit var button: Button
     private lateinit var progressBar: ProgressBar
     private var text: String? = null
+
+    constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         setup(context, attrs)
@@ -49,10 +50,10 @@ class LoadingButton : FrameLayout {
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        super.setOnClickListener(l)
+        button.setOnClickListener(l)
     }
 
-    public fun showProgress(enabled: Boolean) {
+    fun showProgress(enabled: Boolean) {
         if (enabled) {
             button.text = ""
             button.isEnabled = false
