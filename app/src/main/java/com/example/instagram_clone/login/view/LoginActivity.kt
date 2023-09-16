@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.instagram_clone.common.base.DependencyInjector
 import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.ActivityLoginBinding
 import com.example.instagram_clone.login.Login
@@ -22,8 +23,7 @@ class LoginActivity : AppCompatActivity(), Login.View {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repository = LoginRepository(FakeDataSource())
-        presenter = LoginPresenter(this, repository)
+        presenter = LoginPresenter(this, DependencyInjector.loginRepository())
 
         with(binding) {
             loginEditEmail.addTextChangedListener(watcher)
@@ -66,6 +66,7 @@ class LoginActivity : AppCompatActivity(), Login.View {
 
     override fun onUserAuthenticator() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 
