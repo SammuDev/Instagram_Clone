@@ -5,6 +5,8 @@ import java.util.UUID
 object Database {
     val userAuth = hashSetOf<UserAuth>()
 
+    var sessionAuth: UserAuth? = null
+
     init {
         userAuth.add(UserAuth(UUID.randomUUID().toString(), "user1@gmail.com", "123456789"))
         userAuth.add(UserAuth(UUID.randomUUID().toString(), "user2@gmail.com", "987654321"))
