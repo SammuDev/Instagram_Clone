@@ -6,13 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
+import com.example.instagram_clone.databinding.FragmentRegisterEmailBinding
 
-class RegisterEmailFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_register_email, container, false)
-    }
+class RegisterEmailFragment : Fragment(R.layout.fragment_register_email) {
+    private lateinit var binding: FragmentRegisterEmailBinding
 }
