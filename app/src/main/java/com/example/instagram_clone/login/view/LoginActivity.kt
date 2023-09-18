@@ -12,6 +12,7 @@ import com.example.instagram_clone.login.data.FakeDataSource
 import com.example.instagram_clone.login.data.LoginRepository
 import com.example.instagram_clone.login.presentation.LoginPresenter
 import com.example.instagram_clone.main.view.MainActivity
+import com.example.instagram_clone.register.view.RegisterActivity
 
 class LoginActivity : AppCompatActivity(), Login.View {
     private lateinit var binding: ActivityLoginBinding
@@ -39,12 +40,20 @@ class LoginActivity : AppCompatActivity(), Login.View {
             loginButtonEnter.setOnClickListener {
                 presenter.login(loginEditEmail.text.toString(), loginEditPassword.text.toString())
             }
+
+            loginTextViewRegister.setOnClickListener {
+                goToRegisterScreen()
+            }
         }
     }
 
     override fun onDestroy() {
         presenter.onDestroy()
         super.onDestroy()
+    }
+
+    private fun goToRegisterScreen() {
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 
     private val watcher = TextWatcherr {
