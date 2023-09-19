@@ -2,6 +2,7 @@ package com.example.instagram_clone.register.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
 import com.example.instagram_clone.common.util.TextWatcherr
@@ -47,5 +48,8 @@ class RegisterEmailFragment : Fragment(R.layout.fragment_register_email), Regist
             binding?.registerEditTextEmail?.text.toString().isNotEmpty()
     }
 
+    override fun showProgress(enabled: Boolean) {}
     override fun displayEmailFailure(emailError: Int?) {}
+    override fun onEmailFailure(message: String) {}
+    override fun goToNameAndPasswordScreen(email: String) {}
 }
