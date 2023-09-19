@@ -14,6 +14,16 @@ class RegisterEmailFragment : Fragment(R.layout.fragment_register_email), Regist
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterEmailBinding.bind(view)
+
+        binding?.let {
+            with(it) {
+                registerTextViewLogin.setOnClickListener {
+                    activity?.finish()
+                }
+
+                registerEditTextEmail.addTextChangedListener(watcher)
+            }
+        }
     }
 
     override fun displayEmailFailure(emailError: Int?) {}
