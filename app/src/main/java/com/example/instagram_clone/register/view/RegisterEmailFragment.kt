@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
+import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.FragmentRegisterEmailBinding
 import com.example.instagram_clone.register.RegisterEmail
 
@@ -21,16 +22,30 @@ class RegisterEmailFragment : Fragment(R.layout.fragment_register_email), Regist
                     activity?.finish()
                 }
 
+                registerButtonNext.setOnClickListener {
+                    presenter.create(
+                        registerEditTextEmail.text.toString()
+                    )
+                }
+
                 registerEditTextEmail.addTextChangedListener(watcher)
+                registerEditTextEmail.addTextChangedListener(TextWatcherr {
+                    displayEmailFailure(null)
+                })
             }
         }
     }
-
-    override fun displayEmailFailure(emailError: Int?) {}
 
     override fun onDestroy() {
         binding = null
         presenter.onDestroy()
         super.onDestroy()
     }
+
+    private val watcher = TextWatcherr {
+        binding?.registerButtonNext?.isEnabled =
+            binding?.registerEditTextEmail?.text.toString().isNotEmpty()
+    }
+
+    override fun displayEmailFailure(emailError: Int?) {}
 }
