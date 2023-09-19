@@ -2,7 +2,6 @@ package com.example.instagram_clone.register.view
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
 import com.example.instagram_clone.common.util.TextWatcherr

@@ -5,24 +5,17 @@ import android.os.Looper
 import com.example.instagram_clone.common.model.Database
 
 class FakeRegisterEmailDataSource : RegisterEmailDataSource {
-    override fun login(email: String, callback: RegisterEmailCallback) {
-        super.login(email, callback)
+    override fun create(email: String, callback: RegisterEmailCallback) {
+        super.create(email, callback)
 
         Handler(Looper.getMainLooper()).postDelayed({
             val userAuth = Database.userAuth.firstOrNull { email == it.email }
 
-//            when {
-//                userAuth == null -> {
-//                    callback.onFailure("Usuário não encontrado!")
-//                }
-//                userAuth.password != password -> {
-//                    callback.onFailure("Senha incorreta!")
-//                }
-//                else -> {
-//                    Database.sessionAuth = userAuth
-//                    callback.onSuccess(userAuth)
-//                }
-//            }
+            if (userAuth == null) {
+                callback.onSuccess()
+            } else {
+                callback.onFailure("Usuário já cadastrado")
+            }
 
             callback.onComplete()
         }, 2000)
