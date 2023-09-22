@@ -1,5 +1,6 @@
 package com.example.instagram_clone.register.view
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import com.example.instagram_clone.databinding.FragmentRegisterPhotoBinding
 
 class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
     private var binding: FragmentRegisterPhotoBinding? = null
+    private var fragmentAttachListener: FragmentAttachListener? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,6 +26,11 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
             }
         }
         customDialog.show()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is FragmentAttachListener) {}
     }
 
     override fun onDestroy() {
