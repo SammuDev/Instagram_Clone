@@ -26,7 +26,12 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     }
 
     override fun goToNameAndPasswordScreen(email: String) {
-        val fragment = RegisterNamePasswordFragment()
+        val fragment = RegisterNamePasswordFragment().apply {
+            arguments = Bundle().apply {
+                putString(RegisterNamePasswordFragment.KEY_EMAIL, email)
+            }
+        }
+
         replaceFragment(fragment)
     }
 
