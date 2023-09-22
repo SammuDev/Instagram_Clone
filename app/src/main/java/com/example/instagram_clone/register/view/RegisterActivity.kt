@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram_clone.R
 import com.example.instagram_clone.databinding.ActivityRegisterBinding
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     private lateinit var binding: ActivityRegisterBinding
 
     @SuppressLint("CommitTransaction")
@@ -21,5 +21,9 @@ class RegisterActivity : AppCompatActivity() {
             add(R.id.register_fragment, fragment)
             commit()
         }
+    }
+
+    override fun goToNameAndPasswordScreen(email: String) {
+        TODO("Not yet implemented")
     }
 }
