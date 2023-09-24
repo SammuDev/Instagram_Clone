@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
+import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.FragmentRegisterNamePasswordBinding
 import com.example.instagram_clone.register.RegisterNameAndPassword
 
@@ -18,6 +19,20 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterNamePasswordBinding.bind(view)
+
+        val email = arguments?.getString(KEY_EMAIL)
+
+        binding?.let {
+            with(it) {
+                registerEditTextName.addTextChangedListener(watcher)
+                registerEditTextPassword.addTextChangedListener(watcher)
+                registerEditTextConfirm.addTextChangedListener(watcher)
+            }
+        }
+    }
+
+    private val watcher = TextWatcherr {
+        binding?.registerNameButtonNext?.isEnabled = binding?.registerEditTextName?.text.toString().isNotEmpty()
     }
 
     override fun onDestroy() {
