@@ -27,12 +27,23 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
                 registerEditTextName.addTextChangedListener(watcher)
                 registerEditTextPassword.addTextChangedListener(watcher)
                 registerEditTextConfirm.addTextChangedListener(watcher)
+
+                registerEditTextName.addTextChangedListener(TextWatcherr {
+                    displayNameFailure(null)
+                })
+                registerEditTextPassword.addTextChangedListener(TextWatcherr {
+                    displayPasswordFailure(null)
+                })
+                registerEditTextConfirm.addTextChangedListener(TextWatcherr {
+                    displayPasswordFailure(null)
+                })
             }
         }
     }
 
     private val watcher = TextWatcherr {
-        binding?.registerNameButtonNext?.isEnabled = binding?.registerEditTextName?.text.toString().isNotEmpty()
+        binding?.registerNameButtonNext?.isEnabled = binding?.registerEditTextName?.text.toString()
+            .isNotEmpty() && binding?.registerEditTextConfirm?.text.toString().isNotEmpty()
     }
 
     override fun onDestroy() {
