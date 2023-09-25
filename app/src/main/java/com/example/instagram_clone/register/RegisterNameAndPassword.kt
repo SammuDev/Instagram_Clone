@@ -6,7 +6,7 @@ import com.example.instagram_clone.common.base.BaseView
 
 interface RegisterNameAndPassword {
     interface Presenter : BasePresenter {
-        fun create(name: String, password: String, confirm: String)
+        fun create(email: String, name: String, password: String, confirm: String)
     }
 
     interface View : BaseView<Presenter> {

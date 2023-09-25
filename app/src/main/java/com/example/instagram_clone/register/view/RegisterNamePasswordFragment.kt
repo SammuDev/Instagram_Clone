@@ -8,6 +8,7 @@ import com.example.instagram_clone.R
 import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.FragmentRegisterNamePasswordBinding
 import com.example.instagram_clone.register.RegisterNameAndPassword
+import java.lang.IllegalArgumentException
 
 class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_password),
     RegisterNameAndPassword.View {
@@ -20,10 +21,23 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterNamePasswordBinding.bind(view)
 
-        val email = arguments?.getString(KEY_EMAIL)
+        val email = arguments?.getString(KEY_EMAIL) ?: throw IllegalArgumentException("Email not found")
 
         binding?.let {
             with(it) {
+                registerTextViewLogin.setOnClickListener {
+                    activity?.finish()
+                }
+
+                registerNameButtonNext.setOnClickListener {
+                    presenter.create(
+                        email,
+                        registerEditTextName.toString(),
+                        registerEditTextPassword.toString(),
+                        registerEditTextConfirm.toString(),
+                    )
+                }
+
                 registerEditTextName.addTextChangedListener(watcher)
                 registerEditTextPassword.addTextChangedListener(watcher)
                 registerEditTextConfirm.addTextChangedListener(watcher)
