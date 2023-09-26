@@ -18,11 +18,6 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
 
         val fragment = RegisterEmailFragment()
         replaceFragment(fragment)
-
-        supportFragmentManager.beginTransaction().apply {
-            add(R.id.register_fragment, fragment)
-            commit()
-        }
     }
 
     override fun goToNameAndPasswordScreen(email: String) {
