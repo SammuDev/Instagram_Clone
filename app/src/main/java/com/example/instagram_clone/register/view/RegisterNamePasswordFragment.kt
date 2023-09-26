@@ -22,7 +22,7 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterNamePasswordBinding.bind(view)
 
-        val repository = DependencyInjector.registerEmailRepository()
+        val repository = DependencyInjector.registerRepository()
         val presenter = RegisterNameAndPasswordPresenter(this, repository)
         val email =
             arguments?.getString(KEY_EMAIL) ?: throw IllegalArgumentException("Email not found")

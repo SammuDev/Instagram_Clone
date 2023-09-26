@@ -21,7 +21,7 @@ class RegisterEmailFragment : Fragment(R.layout.fragment_register_email), Regist
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterEmailBinding.bind(view)
 
-        val repository = DependencyInjector.registerEmailRepository()
+        val repository = DependencyInjector.registerRepository()
         presenter = RegisterEmailPresenter(this, repository)
 
         binding?.let {

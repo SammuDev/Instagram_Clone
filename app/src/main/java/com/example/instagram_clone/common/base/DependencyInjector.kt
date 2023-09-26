@@ -10,7 +10,7 @@ object DependencyInjector {
         return LoginRepository(FakeDataSource())
     }
 
-    fun registerEmailRepository(): RegisterRepository {
+    fun registerRepository(): RegisterRepository {
         return RegisterRepository(FakeRegisterDataSource())
     }
 }
