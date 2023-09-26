@@ -36,9 +36,9 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
                 registerNameButtonNext.setOnClickListener {
                     presenter.create(
                         email,
-                        registerEditTextName.toString(),
-                        registerEditTextPassword.toString(),
-                        registerEditTextConfirm.toString(),
+                        registerEditTextName.text.toString(),
+                        registerEditTextPassword.text.toString(),
+                        registerEditTextConfirm.text.toString(),
                     )
                 }
 

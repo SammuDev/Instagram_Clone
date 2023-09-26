@@ -3,12 +3,12 @@ package com.example.instagram_clone.register.presentation
 import android.util.Patterns
 import com.example.instagram_clone.R
 import com.example.instagram_clone.register.RegisterEmail
-import com.example.instagram_clone.register.data.RegisterEmailCallback
-import com.example.instagram_clone.register.data.RegisterEmailRepository
+import com.example.instagram_clone.register.data.RegisterCallback
+import com.example.instagram_clone.register.data.RegisterRepository
 
 class RegisterEmailPresenter(
     private var view: RegisterEmail.View?,
-    private val repository: RegisterEmailRepository
+    private val repository: RegisterRepository
 ) : RegisterEmail.Presenter {
     override fun create(email: String) {
         val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -22,7 +22,7 @@ class RegisterEmailPresenter(
         if (isEmailValid) {
             view?.showProgress(true)
 
-            repository.create(email, object : RegisterEmailCallback {
+            repository.create(email, object : RegisterCallback {
                 override fun onSuccess() {
                     view?.goToNameAndPasswordScreen(email)
                 }

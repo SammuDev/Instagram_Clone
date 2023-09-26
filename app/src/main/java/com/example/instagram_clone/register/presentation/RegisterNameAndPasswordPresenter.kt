@@ -2,12 +2,12 @@ package com.example.instagram_clone.register.presentation
 
 import com.example.instagram_clone.R
 import com.example.instagram_clone.register.RegisterNameAndPassword
-import com.example.instagram_clone.register.data.RegisterEmailCallback
-import com.example.instagram_clone.register.data.RegisterEmailRepository
+import com.example.instagram_clone.register.data.RegisterCallback
+import com.example.instagram_clone.register.data.RegisterRepository
 
 class RegisterNameAndPasswordPresenter(
     private var view: RegisterNameAndPassword.View?,
-    private val repository: RegisterEmailRepository
+    private val repository: RegisterRepository
 ) : RegisterNameAndPassword.Presenter {
     override fun create(email: String, name: String, password: String, confirm: String) {
         val isNameValid = name.length > 3
@@ -35,7 +35,7 @@ class RegisterNameAndPasswordPresenter(
         if (isNameValid && isPasswordValid && isConfirmValid) {
             view?.showProgress(true)
 
-            repository.create(email, name, password, object : RegisterEmailCallback {
+            repository.create(email, name, password, object : RegisterCallback {
                 override fun onSuccess() {
                     view?.onCreateSuccess(name)
                 }
