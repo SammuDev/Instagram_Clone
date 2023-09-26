@@ -5,10 +5,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
+import com.example.instagram_clone.common.base.DependencyInjector
 import com.example.instagram_clone.common.util.TextWatcherr
 import com.example.instagram_clone.databinding.FragmentRegisterNamePasswordBinding
 import com.example.instagram_clone.register.RegisterNameAndPassword
-import java.lang.IllegalArgumentException
+import com.example.instagram_clone.register.presentation.RegisterNameAndPasswordPresenter
 
 class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_password),
     RegisterNameAndPassword.View {
@@ -21,7 +22,10 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterNamePasswordBinding.bind(view)
 
-        val email = arguments?.getString(KEY_EMAIL) ?: throw IllegalArgumentException("Email not found")
+        val repository = DependencyInjector.registerEmailRepository()
+        val presenter = RegisterNameAndPasswordPresenter(this, repository)
+        val email =
+            arguments?.getString(KEY_EMAIL) ?: throw IllegalArgumentException("Email not found")
 
         binding?.let {
             with(it) {

@@ -1,8 +1,6 @@
 package com.example.instagram_clone.register.presentation
 
-import android.util.Patterns
 import com.example.instagram_clone.R
-import com.example.instagram_clone.register.RegisterEmail
 import com.example.instagram_clone.register.RegisterNameAndPassword
 import com.example.instagram_clone.register.data.RegisterEmailCallback
 import com.example.instagram_clone.register.data.RegisterEmailRepository
@@ -28,16 +26,22 @@ class RegisterNameAndPasswordPresenter(
             view?.displayPasswordFailure(null)
         }
 
-        if (isEmailValid) {
+        if (!isConfirmValid) {
+            view?.displayPasswordFailure(R.string.password_not_equal)
+        } else {
+            view?.displayPasswordFailure(null)
+        }
+
+        if (isNameValid && isPasswordValid && isConfirmValid) {
             view?.showProgress(true)
 
-            repository.create(email, object : RegisterEmailCallback {
+            repository.create(email, name, password, object : RegisterEmailCallback {
                 override fun onSuccess() {
-                    view?.goToNameAndPasswordScreen(email)
+                    view?.onCreateSuccess(name)
                 }
 
                 override fun onFailure(message: String) {
-                    view?.onEmailFailure(message)
+                    view?.onCreateFailure(message)
                 }
 
                 override fun onComplete() {
