@@ -1,13 +1,11 @@
 package com.example.instagram_clone.register.view
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
 import com.example.instagram_clone.databinding.FragmentRegisterWelcomeBinding
-import com.example.instagram_clone.main.view.MainActivity
 
 class RegisterWelcomeFragment : Fragment(R.layout.fragment_register_welcome) {
     private var binding: FragmentRegisterWelcomeBinding? = null
@@ -24,8 +22,9 @@ class RegisterWelcomeFragment : Fragment(R.layout.fragment_register_welcome) {
             with(it) {
                 registerTextWelcome.text = getString(R.string.welcome_to_instagram, name)
 
+                registerButtonNext.isEnabled = true
                 registerButtonNext.setOnClickListener {
-                    startActivity(Intent(context, MainActivity::class.java))
+                    fragmentAttachListener?.goToPhotoScreen()
                 }
             }
         }
