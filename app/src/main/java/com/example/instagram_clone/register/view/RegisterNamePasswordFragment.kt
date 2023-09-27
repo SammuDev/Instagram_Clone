@@ -60,8 +60,10 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
     }
 
     private val watcher = TextWatcherr {
-        binding?.registerNameButtonNext?.isEnabled = binding?.registerEditTextName?.text.toString()
-            .isNotEmpty() && binding?.registerEditTextConfirm?.text.toString().isNotEmpty()
+        binding?.registerNameButtonNext?.isEnabled =
+            binding?.registerEditTextName?.text.toString().isNotEmpty()
+                    && binding?.registerEditTextConfirm?.text.toString().isNotEmpty()
+                    && binding?.registerEditTextConfirm?.text.toString().isNotEmpty()
     }
 
     override fun onDestroy() {

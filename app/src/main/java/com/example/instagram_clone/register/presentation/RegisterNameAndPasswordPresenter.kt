@@ -20,16 +20,14 @@ class RegisterNameAndPasswordPresenter(
             view?.displayNameFailure(null)
         }
 
-        if (!isPasswordValid) {
-            view?.displayPasswordFailure(R.string.invalid_password)
-        } else {
-            view?.displayPasswordFailure(null)
-        }
-
         if (!isConfirmValid) {
             view?.displayPasswordFailure(R.string.password_not_equal)
         } else {
-            view?.displayPasswordFailure(null)
+            if (!isPasswordValid) {
+                view?.displayPasswordFailure(R.string.invalid_password)
+            } else {
+                view?.displayPasswordFailure(null)
+            }
         }
 
         if (isNameValid && isPasswordValid && isConfirmValid) {

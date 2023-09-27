@@ -6,6 +6,6 @@ class RegisterRepository(private val dataSource: RegisterDataSource) {
     }
 
     fun create(email: String, name: String, password: String, callback: RegisterCallback) {
-        dataSource.create(email, callback)
+        dataSource.create(email, name, password, callback)
     }
 }
