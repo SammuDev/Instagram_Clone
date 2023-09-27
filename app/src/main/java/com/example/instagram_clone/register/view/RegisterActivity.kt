@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     override fun goToWelcomeScreen(name: String) {
         val fragment = RegisterWelcomeFragment().apply {
             arguments = Bundle().apply {
-                putString(RegisterNamePasswordFragment.KEY_NAME, name)
+                putString(RegisterWelcomeFragment.KEY_NAME, name)
             }
         }
 
