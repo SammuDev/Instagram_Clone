@@ -40,6 +40,11 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         replaceFragment(fragment)
     }
 
+    override fun goToPhotoScreen() {
+        val fragment = RegisterWelcomeFragment()
+        replaceFragment(fragment)
+    }
+
     private fun replaceFragment(fragment: Fragment) {
         if (supportFragmentManager.findFragmentById(R.id.register_fragment) == null) {
             supportFragmentManager.beginTransaction().apply {
