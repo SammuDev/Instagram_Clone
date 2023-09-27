@@ -30,6 +30,16 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         replaceFragment(fragment)
     }
 
+    override fun goToWelcomeScreen(name: String) {
+        val fragment = RegisterWelcomeFragment().apply {
+            arguments = Bundle().apply {
+                putString(RegisterNamePasswordFragment.KEY_NAME, name)
+            }
+        }
+
+        replaceFragment(fragment)
+    }
+
     private fun replaceFragment(fragment: Fragment) {
         if (supportFragmentManager.findFragmentById(R.id.register_fragment) == null) {
             supportFragmentManager.beginTransaction().apply {
