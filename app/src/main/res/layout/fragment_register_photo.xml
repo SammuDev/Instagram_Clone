@@ -42,7 +42,7 @@
                 android:textColor="@color/black" />
 
             <!--        Componente (Botão) criado no 'LoadingButton.kt'-->
-            <com.example.instagram_clone.login.view.LoadingButton
+            <com.example.instagram_clone.common.view.LoadingButton
                 android:id="@+id/register_button_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
