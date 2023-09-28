@@ -41,7 +41,7 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     }
 
     override fun goToPhotoScreen() {
-        val fragment = RegisterWelcomeFragment()
+        val fragment = RegisterPhotoFragment()
         replaceFragment(fragment)
     }
 
