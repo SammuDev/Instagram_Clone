@@ -1,11 +1,13 @@
 package com.example.instagram_clone.register.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
 import com.example.instagram_clone.databinding.ActivityRegisterBinding
+import com.example.instagram_clone.main.view.MainActivity
 
 class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     private lateinit var binding: ActivityRegisterBinding
@@ -43,6 +45,11 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     override fun goToPhotoScreen() {
         val fragment = RegisterPhotoFragment()
         replaceFragment(fragment)
+    }
+
+    override fun goToMainScreen() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun replaceFragment(fragment: Fragment) {
