@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
+import com.example.instagram_clone.common.view.CropperImageFragment
 import com.example.instagram_clone.databinding.ActivityRegisterBinding
 import com.example.instagram_clone.main.view.MainActivity
 
@@ -57,8 +58,14 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     }
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        Log.i("Teste", uri.toString())
+        val fragment = CropperImageFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(CropperImageFragment.KEY_URI, uri)
+            }
+        }
+        replaceFragment(fragment)
     }
+
     override fun goToGalleryScreen() {
         getContent.launch("image/*")
     }
