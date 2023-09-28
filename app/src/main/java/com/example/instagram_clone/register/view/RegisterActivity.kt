@@ -2,7 +2,10 @@ package com.example.instagram_clone.register.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
@@ -51,6 +54,13 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+    }
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        Log.i("Teste", uri.toString())
+    }
+    override fun goToGalleryScreen() {
+        getContent.launch("image/*")
     }
 
     private fun replaceFragment(fragment: Fragment) {

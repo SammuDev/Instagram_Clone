@@ -26,11 +26,7 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
 
                 registerButtonNext.isEnabled = true
                 registerButtonNext.setOnClickListener {
-                    val customDialog = CustomDialog(requireContext())
-                    customDialog.addButton(R.string.photo, R.string.gallery) {
-                        openDialog(R.string.photo, R.string.gallery)
-                    }
-                    customDialog.show()
+                    openDialog()
                 }
             }
         }
@@ -43,11 +39,15 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
         }
     }
 
-    private fun openDialog(photo: String, gallery: String) {
-        when (binding?.registerButtonNext?.id) {
-            R.string.photo -> Log.i("Teste", "FOTO")
-            R.string.gallery -> Log.i("Teste", "GALERIA")
+    private fun openDialog() {
+        val customDialog = CustomDialog(requireContext())
+        customDialog.addButton(R.string.photo, R.string.gallery) {
+            when (binding?.registerButtonNext?.id) {
+                R.string.photo -> Log.i("Teste", "FOTO")
+                R.string.gallery -> fragmentAttachListener.goToGalleryScreen()
+            }
         }
+        customDialog.show()
     }
 
     override fun onDestroy() {
