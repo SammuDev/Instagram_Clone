@@ -43,6 +43,6 @@
     <string name="follow">Seguir</string>
     <string name="logout">Deseja sair?</string>
     <string name="logout_action">Sair</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Cancelar</string>
     <string name="content_logo">Logo do app Instagram na ActionBar</string>
 </resources>
