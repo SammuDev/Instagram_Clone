@@ -1,17 +1,31 @@
 package com.example.instagram_clone.register.view
 
 import android.content.Context
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import com.example.instagram_clone.R
+import com.example.instagram_clone.common.view.CropperImageFragment
 import com.example.instagram_clone.common.view.CustomDialog
 import com.example.instagram_clone.databinding.FragmentRegisterPhotoBinding
 
 class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
     private var binding: FragmentRegisterPhotoBinding? = null
     private lateinit var fragmentAttachListener: FragmentAttachListener
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setFragmentResultListener("cropkey") { requestKey, bundle ->
+            val uri = bundle.getParcelable<Uri>(CropperImageFragment.KEY_URI)
+            onCropImageResult(uri)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,6 +62,12 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
             }
         }
         customDialog.show()
+    }
+
+    private fun onCropImageResult(uri: Uri?) {
+        if (uri != null) {
+            binding?.registerImageViewProfile
+        }
     }
 
     override fun onDestroy() {

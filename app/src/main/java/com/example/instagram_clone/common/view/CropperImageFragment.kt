@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import com.example.instagram_clone.R
 import com.example.instagram_clone.databinding.FragmentImageCropperBinding
 import java.io.File
@@ -31,6 +33,8 @@ class CropperImageFragment : Fragment(R.layout.fragment_image_cropper) {
 
                 cropperContainer.setOnCropImageCompleteListener { view, result ->
                     Log.i("Teste", "Imagem salva: ${result.uri}")
+
+                    setFragmentResult("cropkey", bundleOf(KEY_URI to result.uri))
                 }
 
                 cropperButtonSave.setOnClickListener {
