@@ -2,6 +2,7 @@ package com.example.instagram_clone.common.view
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
@@ -21,6 +22,14 @@ class CropperImageFragment : Fragment(R.layout.fragment_image_cropper) {
                 cropperContainer.setAspectRatio(1, 1)
                 cropperContainer.setFixedAspectRatio(true)
                 cropperContainer.setImageUriAsync(uri)
+
+                cropperButtonCancel.setOnClickListener {
+                    parentFragmentManager.popBackStack()
+                }
+
+                cropperButtonSave.setOnClickListener {
+                    val dir = context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                }
             }
         }
     }
