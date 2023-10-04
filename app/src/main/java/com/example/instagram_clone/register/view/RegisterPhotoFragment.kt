@@ -1,6 +1,7 @@
 package com.example.instagram_clone.register.view
 
 import android.content.Context
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +19,7 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
     private var binding: FragmentRegisterPhotoBinding? = null
     private lateinit var fragmentAttachListener: FragmentAttachListener
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -64,9 +66,15 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
         customDialog.show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun onCropImageResult(uri: Uri?) {
         if (uri != null) {
-            binding?.registerImageViewProfile
+            if (Build.VERSION.SDK_INT >= 28) {
+
+            }
+            val source = ImageDecoder.createSource(requireContext().contentResolver, uri)
+            val bitmap = ImageDecoder.decodeBitmap(source)
+            binding?.registerImageViewProfile?.setImageBitmap(bitmap)
         }
     }
 
