@@ -5,6 +5,7 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -69,11 +70,13 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
     @RequiresApi(Build.VERSION_CODES.P)
     private fun onCropImageResult(uri: Uri?) {
         if (uri != null) {
-            if (Build.VERSION.SDK_INT >= 28) {
-
+            val bitmap = if (Build.VERSION.SDK_INT >= 28) {
+                val source = ImageDecoder.createSource(requireContext().contentResolver, uri)
+                ImageDecoder.decodeBitmap(source)
+            } else {
+                MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
             }
-            val source = ImageDecoder.createSource(requireContext().contentResolver, uri)
-            val bitmap = ImageDecoder.decodeBitmap(source)
+
             binding?.registerImageViewProfile?.setImageBitmap(bitmap)
         }
     }
