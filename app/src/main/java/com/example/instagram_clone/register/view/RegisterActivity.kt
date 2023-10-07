@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -68,6 +69,10 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
 
     override fun goToGalleryScreen() {
         getContent.launch("image/*")
+    }
+
+    override fun goToCameraScreen() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
     }
 
     private fun replaceFragment(fragment: Fragment) {

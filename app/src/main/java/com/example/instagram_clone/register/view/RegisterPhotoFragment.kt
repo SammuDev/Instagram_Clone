@@ -18,7 +18,7 @@ import com.example.instagram_clone.databinding.FragmentRegisterPhotoBinding
 
 class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
     private var binding: FragmentRegisterPhotoBinding? = null
-    private lateinit var fragmentAttachListener: FragmentAttachListener
+    private var fragmentAttachListener: FragmentAttachListener? = null
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
         binding?.let { it ->
             with(it) {
                 registerButtonJump.setOnClickListener {
-                    fragmentAttachListener.goToMainScreen()
+                    fragmentAttachListener?.goToMainScreen()
                 }
 
                 registerButtonNext.isEnabled = true
@@ -59,9 +59,9 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
     private fun openDialog() {
         val customDialog = CustomDialog(requireContext())
         customDialog.addButton(R.string.photo, R.string.gallery) {
-            when (binding?.registerButtonNext?.id) {
-                R.string.photo -> Log.i("Teste", "FOTO")
-                R.string.gallery -> fragmentAttachListener.goToGalleryScreen()
+            when (it.id) {
+                R.string.photo -> fragmentAttachListener?.goToCameraScreen()
+                R.string.gallery -> fragmentAttachListener?.goToGalleryScreen()
             }
         }
         customDialog.show()
