@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,6 +14,11 @@ import com.example.instagram_clone.R
 import com.example.instagram_clone.common.view.CropperImageFragment
 import com.example.instagram_clone.databinding.ActivityRegisterBinding
 import com.example.instagram_clone.main.view.MainActivity
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     private lateinit var binding: ActivityRegisterBinding
@@ -71,8 +77,23 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         getContent.launch("image/*")
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     override fun goToCameraScreen() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            try {
+                createImageFile()
+            } catch (e: IOException) {
+                Log.e("RegisterActivity", e.message, e)
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    private fun createImageFile() : File {
+        val timestamp = SimpleDateFormat("", Locale.getDefault()).format(Date())
+        val dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile("JPEG_${timestamp}_", ".jpg", dir)
     }
 
     private fun replaceFragment(fragment: Fragment) {
