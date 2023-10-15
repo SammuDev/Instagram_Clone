@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
 import com.example.instagram_clone.common.view.CropperImageFragment
@@ -22,6 +23,7 @@ import java.util.Locale
 
 class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var currentPhoto: Uri
 
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,10 +83,16 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
     override fun goToCameraScreen() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (intent.resolveActivity(packageManager) != null) {
-            try {
+            val photoFile: File? = try {
                 createImageFile()
             } catch (e: IOException) {
                 Log.e("RegisterActivity", e.message, e)
+                null
+            }
+
+            photoFile?.also {
+                val photoUri = FileProvider.getUriForFile(this, "", it)
+                currentPhoto = photoUri
             }
         }
     }
