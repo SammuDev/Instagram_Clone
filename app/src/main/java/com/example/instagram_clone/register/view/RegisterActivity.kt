@@ -66,17 +66,21 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         startActivity(intent)
     }
 
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        val fragment = CropperImageFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(CropperImageFragment.KEY_URI, uri)
-            }
+//    open gallery
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let { openImageCropper(uri) }
         }
-        replaceFragment(fragment)
-    }
 
     override fun goToGalleryScreen() {
         getContent.launch("image/*")
+    }
+
+//    open camera
+    private val getCamera = registerForActivityResult(ActivityResultContracts.TakePicture()) { saved ->
+        if (saved) {
+            openImageCropper(currentPhoto)
+        }
     }
 
     @SuppressLint("QueryPermissionsNeeded")
@@ -91,14 +95,15 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
             }
 
             photoFile?.also {
-                val photoUri = FileProvider.getUriForFile(this, "", it)
+                val photoUri =
+                    FileProvider.getUriForFile(this, "androidx.core.content.FileProvider", it)
                 currentPhoto = photoUri
             }
         }
     }
 
     @Throws(IOException::class)
-    private fun createImageFile() : File {
+    private fun createImageFile(): File {
         val timestamp = SimpleDateFormat("", Locale.getDefault()).format(Date())
         val dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("JPEG_${timestamp}_", ".jpg", dir)
@@ -117,5 +122,14 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
                 commit()
             }
         }
+    }
+
+    private fun openImageCropper(uri: Uri) {
+        val fragment = CropperImageFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(CropperImageFragment.KEY_URI, uri)
+            }
+        }
+        replaceFragment(fragment)
     }
 }
