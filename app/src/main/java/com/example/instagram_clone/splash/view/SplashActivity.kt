@@ -1,11 +1,15 @@
 package com.example.instagram_clone.splash.view
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.example.instagram_clone.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.instagram_clone.common.base.DependencyInjector
 import com.example.instagram_clone.databinding.ActivitySplashBinding
+import com.example.instagram_clone.login.view.LoginActivity
+import com.example.instagram_clone.main.view.MainActivity
 import com.example.instagram_clone.splash.Splash
+import com.example.instagram_clone.splash.presentation.SplashPresenter
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity(), Splash.View {
@@ -16,13 +20,25 @@ class SplashActivity : AppCompatActivity(), Splash.View {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding = ActivitySplashBinding.inflate(layoutInflater)
+
+        val repository = DependencyInjector.splashRepository()
+        presenter = SplashPresenter(this, repository)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
     }
 
     override fun goToMainScreen() {
-        TODO("Not yet implemented")
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     override fun goToLoginScreen() {
-        TODO("Not yet implemented")
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 }
