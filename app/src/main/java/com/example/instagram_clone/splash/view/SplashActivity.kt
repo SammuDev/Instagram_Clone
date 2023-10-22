@@ -1,5 +1,7 @@
 package com.example.instagram_clone.splash.view
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -25,6 +27,11 @@ class SplashActivity : AppCompatActivity(), Splash.View {
         presenter = SplashPresenter(this, repository)
 
         binding.splashImg.animate().apply {
+            setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    presenter.authenticated()
+                }
+            })
             duration = 1000
             alpha(1.0f)
             start()
@@ -39,9 +46,19 @@ class SplashActivity : AppCompatActivity(), Splash.View {
     }
 
     override fun goToMainScreen() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        binding.splashImg.animate().apply {
+            setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = Intent(baseContext, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                }
+            })
+            duration = 1000
+            startDelay = 1000
+            alpha(0.0f)
+            start()
+        }
     }
 
     override fun goToLoginScreen() {
