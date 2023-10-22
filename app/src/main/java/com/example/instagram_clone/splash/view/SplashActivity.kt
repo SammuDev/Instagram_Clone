@@ -23,6 +23,14 @@ class SplashActivity : AppCompatActivity(), Splash.View {
 
         val repository = DependencyInjector.splashRepository()
         presenter = SplashPresenter(this, repository)
+
+        binding.splashImg.animate().apply {
+            duration = 1000
+            alpha(1.0f)
+            start()
+        }
+
+        presenter.authenticated()
     }
 
     override fun onDestroy() {
