@@ -1,12 +1,11 @@
 package com.example.instagram_clone.splash.view
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.instagram_clone.common.base.DependencyInjector
+import com.example.instagram_clone.common.extension.animationEnd
 import com.example.instagram_clone.databinding.ActivitySplashBinding
 import com.example.instagram_clone.login.view.LoginActivity
 import com.example.instagram_clone.main.view.MainActivity
@@ -27,10 +26,8 @@ class SplashActivity : AppCompatActivity(), Splash.View {
         presenter = SplashPresenter(this, repository)
 
         binding.splashImg.animate().apply {
-            setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    presenter.authenticated()
-                }
+            setListener(animationEnd {
+                presenter.authenticated()
             })
             duration = 1000
             alpha(1.0f)
@@ -47,12 +44,11 @@ class SplashActivity : AppCompatActivity(), Splash.View {
 
     override fun goToMainScreen() {
         binding.splashImg.animate().apply {
-            setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    val intent = Intent(baseContext, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                }
+            setListener(animationEnd {
+                val intent = Intent(baseContext, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             })
             duration = 1000
             startDelay = 1000
@@ -62,8 +58,17 @@ class SplashActivity : AppCompatActivity(), Splash.View {
     }
 
     override fun goToLoginScreen() {
-        val intent = Intent(this, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        binding.splashImg.animate().apply {
+            setListener(animationEnd {
+                val intent = Intent(baseContext, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            })
+            duration = 1000
+            startDelay = 1000
+            alpha(0.0f)
+            start()
+        }
     }
 }
