@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.instagram_clone.R
+import com.example.instagram_clone.common.extension.hideKeyboard
 import com.example.instagram_clone.common.view.CropperImageFragment
 import com.example.instagram_clone.databinding.ActivityRegisterBinding
 import com.example.instagram_clone.main.view.MainActivity
@@ -104,7 +105,7 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
-        val timestamp = SimpleDateFormat("", Locale.getDefault()).format(Date())
+        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("JPEG_${timestamp}_", ".jpg", dir)
     }
@@ -122,6 +123,7 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
                 commit()
             }
         }
+        hideKeyboard()
     }
 
     private fun openImageCropper(uri: Uri) {

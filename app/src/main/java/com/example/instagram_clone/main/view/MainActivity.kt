@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private lateinit var searchFragment: Fragment
     private lateinit var cameraFragment: Fragment
     private lateinit var profileFragment: Fragment
+    private var currentFragment: Fragment? = null
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +48,32 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         searchFragment = SearchFragment()
         cameraFragment = CameraFragment()
         profileFragment = ProfileFragment()
+
+        binding.mainBottomNav.selectedItemId = R.id.menu_bottom_home
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.menu_bottom_home -> currentFragment = homeFragment
+            R.id.menu_bottom_search -> currentFragment = searchFragment
+            R.id.menu_bottom_add -> currentFragment = cameraFragment
+            R.id.menu_bottom_profile -> currentFragment = profileFragment
+        }
+
+        currentFragment?.let {
+            if (supportFragmentManager.findFragmentById(R.id.main_fragment) == null) {
+                supportFragmentManager.beginTransaction().apply {
+                    add(R.id.main_fragment, it)
+                    commit()
+                }
+            } else {
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.main_fragment, it)
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+        }
         return false
     }
 }
